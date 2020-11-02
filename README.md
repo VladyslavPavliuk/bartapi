@@ -5,12 +5,14 @@
 
 1. **Run _composer install_**.
 
-2. **Rename .env-example file to ".env"**.
+2. **Run _npm install && npm run dev_**.
 
-3. **Configure your .env file** (_Select your database name(DB_DATABASE), host(DB_HOST), username(DB_USERNAME), password(DB_PASSWORD)_). 
+3. **Rename .env-example file to ".env"**.
 
-3. **Migrate database and seeds** (run in your terminal _php artisan migrate:refresh --seed_).
+4. **Configure your .env file** (_Select your database name(DB_DATABASE), host(DB_HOST), username(DB_USERNAME), password(DB_PASSWORD)_). 
 
-4. **Run in your terminal** _php artisan key:generate_.
+5. **Migrate database and seeds** (run in your terminal _php artisan migrate:refresh --seed_).
 
-5. **Go to your local server or run in your terminal** _php artisan serve_ **and enjoy!**
+6. **Run in your terminal** _php artisan key:generate_.
+
+7. **Go to your local server or run in your terminal** _php artisan serve_ **and enjoy!**
