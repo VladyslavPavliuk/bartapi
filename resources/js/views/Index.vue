@@ -26,7 +26,7 @@
 import axios from "axios";
 
 export default {
-    components: {Spin},
+
     data: () => ({
         images: [],
         url: 'http://api.programator.sk/images/720x480/',

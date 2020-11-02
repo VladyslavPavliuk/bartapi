@@ -2093,9 +2093,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    Spin: Spin
-  },
   data: function data() {
     return {
       images: [],
@@ -53842,8 +53839,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\Programming\xampp\htdocs\learning.local\laravel\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\Programming\xampp\htdocs\learning.local\laravel\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\Programming\bart1\bartapi\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\Programming\bart1\bartapi\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
