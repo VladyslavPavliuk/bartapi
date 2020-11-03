@@ -1,5 +1,8 @@
 <template>
     <div class="container">
+        <div class="alert alert-danger"  v-if="!name" role="alert">
+            Gallery name is required
+        </div>
         <div class="large-12 medium-12 small-12 cell">
             <div class="form-group">
                 <label for="exampleFormControlInput1">Gallery name</label>
@@ -8,9 +11,11 @@
                        placeholder="Gallery name">
             </div>
             <label>File
-                <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+                <input type="file" id="file" ref="file" v-on:change="handleFileUpload()" required/>
             </label>
-            <button v-on:click="submitFile()">Submit</button>
+            <button v-on:click="submitFile()">
+             Submit
+            </button>
         </div>
     </div>
 </template>
@@ -21,7 +26,7 @@ export default {
         return {
             file: '',
             name: '',
-            url: 'http://api.programator.sk/gallery/'
+            url: 'http://api.programator.sk/gallery/',
         }
     },
     methods: {
@@ -36,10 +41,11 @@ export default {
                     }
                 }
             ).then(function(){
-                console.log('SUCCESS!!');
+                console.log('SUCCESS');
+
             })
                 .catch(function(){
-                    console.log('FAILURE!!');
+                    console.log('FAILURE');
                 });
         },
         handleFileUpload(){

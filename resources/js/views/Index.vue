@@ -1,35 +1,42 @@
 <template xmlns="http://www.w3.org/1999/html">
     <div>
-        <div class="card " style="width: 18rem; display:inline-block; margin: 50px" v-for="image in images">
+        <spin v-if="loading"></spin>
+        <div v-else>
+            <div class="card " style="width: 18rem; display:inline-block; margin: 50px" v-for="image in images">
 
-            <div v-if="image.image">
-                <img v-bind:src="url + image.image.fullpath"  class="card-img-top" alt="...">
+                <div v-if="image.image">
+                    <img v-bind:src="url + image.image.fullpath" class="card-img-top" alt="...">
+                </div>
+
+                <div v-else>
+                    This gallery doesn't have any image
+                </div>
+
+                <div class="card-body">
+                    <p class="card-text">Gallery name: {{ image.name }}</p>
+                </div>
+
+                    <button type="submit" class="btn btn-primary" @click.prevent="download(image.image.fullpath)">
+                        Download
+                    </button>
+
+
             </div>
-
-            <div v-else>
-                This gallery doesn't have any image
-            </div>
-
-            <div class="card-body">
-                <p class="card-text">Gallery name: {{ image.name }}</p>
-            </div>
-
-            <button type="submit" class="btn btn-primary" @click.prevent="download(image.image.fullpath)">
-                Download
-            </button>
-
         </div>
     </div>
 </template>
 
 <script>
 import axios from "axios";
+import Spin from "../components/Spin";
 
 export default {
     components: {Spin},
+
     data: () => ({
         images: [],
         url: 'http://api.programator.sk/images/720x480/',
+        loading: true,
     }),
 
     mounted() {
@@ -40,12 +47,13 @@ export default {
             axios.get('http://api.programator.sk/gallery')
                 .then(response => {
                     this.images = response.data.galleries;
+                    this.loading = false
                 })
         },
-        download(fullpath){
+        download(fullpath) {
             axios.get(this.url + fullpath, {
                 responseType: 'blob',
-            }).then( response =>{
+            }).then(response => {
                 const url = window.URL.createObjectURL(new Blob([response.data]));
                 const link = document.createElement('a');
                 link.href = url;
