@@ -22,13 +22,11 @@
 
 <script>
 export default {
-    data(){
-        return {
+    data: () => ({
             file: '',
             name: '',
             url: 'http://api.programator.sk/gallery/',
-        }
-    },
+        }),
     methods: {
         submitFile(){
             let formData = new FormData();
