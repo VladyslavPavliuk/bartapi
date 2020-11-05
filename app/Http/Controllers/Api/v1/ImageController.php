@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Models\Image;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Gallery;
 use Illuminate\Http\Request;
 
 class ImageController extends Controller
@@ -13,15 +11,11 @@ class ImageController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Image[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-//        $response = Http::get('http://api.programator.sk/gallery');
-//
-//        $decode = json_decode($response);
-//
-//        return $results = $decode->galleries;
+        //
     }
 
     /**
@@ -31,43 +25,47 @@ class ImageController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(Request $request, $path)
     {
-//        $response = Http::get("http://api.programator.sk/images/120x60/$fullpath");
-//
-//        return Storage::disk('local')
-//            ->put($path, $response);
+        $model = new Gallery();
+
+        if ($model->storeImageValidate($request)):
+            return $model->storeImageValidate($request);
+        endif;
+
+        $concret = $model->where('path', '=', $path)->firstOrFail();
+
+        $concret->image = $request->file('image')->store($path);
+
+        $concret->save();
+
+        return response()->json($concret, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response|object
+     * @param int $id
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
-    public function show($id)
+    public function show($image)
     {
-//        $response = Http::get("http://api.programator.sk/gallery/$id");
-//
-//        $decode = json_decode($response);
-//
-//        $galleries = $decode;
-
+        return response()->download(storage_path("app/$image"), 'image');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -78,8 +76,8 @@ class ImageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -90,11 +88,11 @@ class ImageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return int
+     * @param int $id
+     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        return Image::destroy($id);
+        //
     }
 }
