@@ -19,9 +19,17 @@
 
 ## API:
 
-1. /api/gallery           |GET| |POST| - get and store new gallery. |name| - required param, gallery name.
+1. /api/gallery          
 
-2. /api/gallery/{path}    |GET| |POST| |DELETE| - get concret gallery, upload image, |image| param. {path} - "path" from 'api/gallery'.
+|GET| |POST| - get and store new gallery. |name| - required param, gallery name.
 
-3. /api/images/{path}     |GET| - get and download concret image, {path} - "image" from '/api/gallery'.
+2. /api/gallery/{path}    
+
+|GET| |POST| |DELETE| - get concret gallery, upload image, |image| param. {path} - "path" from 'api/gallery'.
+
+3. /api/images/{path}    
+
+|GET| - get and download concret image, {path} - "image" from '/api/gallery'.
+
+## All uploaded photos will save to storage/app
 
