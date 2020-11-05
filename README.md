@@ -16,3 +16,12 @@
 6. **Run in your terminal** _php artisan key:generate_.
 
 7. **Go to your local server or run in your terminal** _php artisan serve_ **and enjoy!**
+
+## API:
+
+1. /api/gallery           |GET| |POST| - get and store new gallery. |name| - required param, gallery name.
+
+2. /api/gallery/{path}    |GET| |POST| |DELETE| - get concret gallery, upload image, |image| param. {path} - "path" from 'api/gallery'.
+
+3. /api/images/{path}     |GET| - get and download concret image, {path} - "image" from '/api/gallery'.
+
