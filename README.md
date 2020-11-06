@@ -31,5 +31,5 @@
 
 |GET| - get and download concret image, {path} - "image" from '/api/gallery'.
 
-## All uploaded photos will save to storage/app
+## All uploaded photos will save to storage/app folder
 
