@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ImageController extends Controller
 {
@@ -15,7 +16,7 @@ class ImageController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -57,9 +58,16 @@ class ImageController extends Controller
      * @param int $id
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
-    public function show($image)
+    public function show($w, $h, $image)
     {
-        return response()->download(storage_path("app/$image"), 'image');
+        $photo = Image::make(storage_path("app/$image"));
+
+        $photo->resize($w, $h);
+
+        $photo->save(storage_path("app/resizes/image.jpg"), 80,);
+
+        return response()->download($photo->dirname . '/' . $photo->basename, 'image');
+
     }
 
     /**

@@ -16,7 +16,7 @@ class FacebookController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function redirectToFacebook()
     {
@@ -27,7 +27,7 @@ class FacebookController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|void
      */
     public function handleFacebookCallback()
     {
