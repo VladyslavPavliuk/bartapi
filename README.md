@@ -27,7 +27,7 @@
 
 |GET| |POST| |DELETE| - get concret gallery, upload image, |image| param. {path} - "path" from 'api/gallery'. Delete method only by id, example : api/gallery/1
 
-3. /api/images/{path}    
+3. /api/images/{w}x{h}/{path}    
 
 |GET| - get and download concret image, {path} - "image" from '/api/gallery'.
 
